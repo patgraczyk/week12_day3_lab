@@ -10,20 +10,17 @@ SelectView.prototype.bindEvents = function() {
     this.populate(allCountries);
   });
 
-
 this.element.addEventListener('change', (event) => {
   const selectedIndex= event.target.value;
-  PubSub.publish('SelectView', selectedIndex);
+  PubSub.publish('SelectView:change', selectedIndex);
 });
-
-
-}
+};
 
 SelectView.prototype.populate = function(allCountries){
   allCountries.forEach((country, index ) => {
   const option = document.createElement('option')
   option.textContent = country.name;
-  console.log(country)
+  // console.log(country)
   option.value = index;
   this.element.appendChild(option);
 });
